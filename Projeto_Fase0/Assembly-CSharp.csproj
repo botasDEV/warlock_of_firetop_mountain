@@ -60,6 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MessageWritter.cs" />
+    <Compile Include="Assets\Npc_Messages.cs" />
+    <Compile Include="Assets\NPC_Rotate.cs" />
+    <Compile Include="Assets\NPC_Talk.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\PlayerVision.cs" />
     <None Include="Assets\Hovl Studio\Procedural fire\Shaders\FireSphere.shader" />

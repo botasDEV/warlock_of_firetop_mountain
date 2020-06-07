@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public float speed = 4f;
-    public float gravity = -2f;
-    public float jumpHeight = 2f;
+    public float gravity = -12f;
+    public float jumpHeight = 1f;
     public LayerMask groundMask;
     Vector3 velocity;
 
@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+    // Checks if the player grounded
     bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
