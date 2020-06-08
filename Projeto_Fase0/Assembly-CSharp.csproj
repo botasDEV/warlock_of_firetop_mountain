@@ -60,12 +60,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Data\IActions.cs" />
+    <Compile Include="Assets\Data\JsonParser.cs" />
+    <Compile Include="Assets\Data\Message.cs" />
+    <Compile Include="Assets\Data\Npc.cs" />
+    <Compile Include="Assets\Data\Npcs.cs" />
     <Compile Include="Assets\MessageWritter.cs" />
-    <Compile Include="Assets\Npc_Messages.cs" />
     <Compile Include="Assets\NPC_Rotate.cs" />
     <Compile Include="Assets\NPC_Talk.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\PlayerVision.cs" />
+    <Compile Include="Assets\SouthGuardJackActions.cs" />
     <None Include="Assets\Hovl Studio\Procedural fire\Shaders\FireSphere.shader" />
     <None Include="Assets\Hovl Studio\Procedural fire\Demo scene\Readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">

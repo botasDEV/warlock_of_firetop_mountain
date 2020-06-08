@@ -1,0 +1,36 @@
+{
+	"npcs" :
+	[
+		{
+			"name" : "Farmer's Son Brayden",
+			"messages": [
+			{
+				"message": "I'm to become stronger than Siegfried.\nHe our city's champion.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "If you need to train find him.\nI will proceed with my trains so I can fight you too!",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			}
+		  ]
+		},
+		{
+			"name": "South Guard Jack", 
+			"messages": [
+			{
+				"message": "Are you leaving already?\nI was starting to believe that you would get the treasure from the mountain.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": true,
+				"method": "GiveUp"
+			}
+		  ]
+		}
+	]
+}

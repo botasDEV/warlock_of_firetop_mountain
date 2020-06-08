@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,34 +8,29 @@ public class NPC_Talk : MonoBehaviour
 {
     [SerializeField]
     private MessageWritter messageWritter;
+    
+    private JsonParser jsonParser;
+    public TextAsset textAsset;
+
     public GameObject panel;
     public Text textUIName;
     public Text textUIMessage;
     public Text textUIAction;
-    private List<string> npcMessages;
+    private string method;
+    private Message[] npcMessages;
     private List<Dictionary<string, string>> listDictMessages;
     private bool talkStarted = false;
+    private int phase = 0;
+    private bool isYesNo = false;
     private const string CLICK_TO_CONTINUE = "Press E to continue...";
-    private const string DICTIONARY_KEY_MESSAGE = "message";
-    private const string DICTIONARY_KEY_IGNORE = "ignore";
+    private const string CLICK_TO_YESNO = "Left Mouse to confirm...\tRight Mouse to cancel";
+
 
     private void Start()
     {
-        listDictMessages = new List<Dictionary<string, string>>();
-
-        npcMessages = gameObject.GetComponent<Npc_Messages>().messages;
-        foreach(string message in npcMessages)
-        {
-            Dictionary<string, string> auxDictionary = new Dictionary<string, string>
-            {
-                { DICTIONARY_KEY_MESSAGE, message },
-                { DICTIONARY_KEY_IGNORE, "false" }
-            };
-
-            listDictMessages.Add(auxDictionary);
-        }
-
-        
+        jsonParser = new JsonParser(textAsset, gameObject.name);
+        Npc npc = jsonParser.Setup();
+        npcMessages = npc.messages;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,22 +63,47 @@ public class NPC_Talk : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && talkStarted && messageWritter.finishedWriting)
+        if (Input.GetKeyDown(KeyCode.E) && !isYesNo && talkStarted && messageWritter.finishedWriting)
         {
-            foreach (Dictionary<string, string> dictMessages in listDictMessages)
+            foreach (Message npcMessage in npcMessages)
             {
-                string npcMessage = dictMessages[DICTIONARY_KEY_MESSAGE];
-                string npcName = gameObject.name;
-                string action = CLICK_TO_CONTINUE;
-
-                if (!bool.Parse(dictMessages[DICTIONARY_KEY_IGNORE]))
+                if (npcMessage.phase == this.phase)
                 {
-                    WriteMessage(npcName, npcMessage, action);
-                    dictMessages[DICTIONARY_KEY_IGNORE] = "true";
-                    return;
-                }                
+                    string message = npcMessage.message;
+                    string npcName = gameObject.name;
+                    string action = (npcMessage.yesno ? CLICK_TO_YESNO : CLICK_TO_CONTINUE);
+
+                    if (!npcMessage.ignore)
+                    {
+                        WriteMessage(npcName, message, action);
+                        npcMessage.ignore = true;
+                        this.method = npcMessage.method;
+                        this.isYesNo = npcMessage.yesno;
+                        return;
+                    }
+                }         
             }
 
+            // If the talk reaches this line there is nothing left to say so closes the talk
+            FinishTalk();
+        }
+        
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && isYesNo && talkStarted && messageWritter.finishedWriting)
+        {
+            string className = gameObject.name.Replace(" ", "") + "Actions";
+            List<object> parameters = new List<object>();
+            
+            bool accepted = (Input.GetMouseButtonDown(0) ? true : false);
+            parameters.Add((object)accepted);
+            object[] test = parameters.ToArray();
+
+            Debug.Log(className);
+            Debug.Log(method);
+            Debug.Log(JsonUtility.ToJson(parameters));
+
+            IActions actions = gameObject.GetComponent(className) as IActions;
+            actions.exec(method, test);
+            
             // If the talk reaches this line there is nothing left to say so closes the talk
             FinishTalk();
         }
@@ -91,12 +112,16 @@ public class NPC_Talk : MonoBehaviour
     private void FinishTalk()
     {
         talkStarted = false;
+        isYesNo = false;
         panel.SetActive(false);
         WriteMessage(gameObject.name, "", CLICK_TO_CONTINUE);
 
-        foreach (Dictionary<string, string> dictMessages in listDictMessages)
+        foreach (Message npcMessage in npcMessages)
         {
-            dictMessages[DICTIONARY_KEY_IGNORE] = "false";
+            if (npcMessage.phase == this.phase)
+            {
+                npcMessage.ignore = false;
+            }
         }
     }
 }
