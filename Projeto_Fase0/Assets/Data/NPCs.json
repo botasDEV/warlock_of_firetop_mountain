@@ -17,7 +17,21 @@
 				"phase": 0,
 				"yesno": false,
 				"method": ""
-			}
+			},
+			{
+				"message": "You have the Dice of Light now!\nI believe that stories will be told about you.",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Take this. It's not much but can help you!",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": "AddFiveCoins"
+			},
 		  ]
 		},
 		{
@@ -29,6 +43,291 @@
 				"phase": 0,
 				"yesno": true,
 				"method": "GiveUp"
+			},
+			{
+				"message": "Don't give up now.. You are almost ready!\nStill want to go home?",
+				"ignore": false,
+				"phase": 1,
+				"yesno": true,
+				"method": "GiveUp"
+			}
+		  ]
+		},
+		{
+			"name": "North Guard Jackson", 
+			"messages": [
+			{
+				"message": "Are you an adventurer?\nThis way you'll get to the Firetop Mountain.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Wait you can't go there without the right equipment..\nJust talk with other villagers to know get what you need",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "You're eyes have a different glow!\nI believe you are ready now to take your path to the Mountain.",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Are you sure you wan't to go?",
+				"ignore": false,
+				"phase": 1,
+				"yesno": true,
+				"method": "StartAdventure"
+			}
+		  ]
+		},
+		{
+			"name": "Gipsy Kayla", 
+			"messages": [
+			{
+				"message": "Hi! I am the city's gipsy Kayla.\nYour soul glows as those who dare to challenge the Firetop Mountain.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "If you are really decided to go there you can't go without the mistic weapon.\nYou'll need the Dice of Light.\nDo you know about the dice? I'll tell you about them.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "In the old days wars were fought with sharp weapons like swords.\nAt those days peace was maintained by a group of wizards called the Light Wizards.\nThen one of them wanted more power and to rule over everything becoming first Darkness Warlock.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "He was known as the Red Warlock.\nAs his power grew he created vile monsters capable of destroing entire kingdoms.\nWith this great menace the other Light Wizards created a searched for the legendary Light Warrior.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "As they found him they gave him the most powerful magic weapon of all kingdoms!\nThe Dice of Light!\nAfter the great war the Warrior fought the Warlock and imprisoned him in the Mountain ahead summoning a fire to hold he's powers.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "So the Warrior was successful but the fight killed him and the Dice were lost.\nHowever... After years searching I found the Dice and promised myself to give them to someone like you.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "As the years passed the Firetop Mountain got weaker and now a great warrior is needed again.\nI've waiting for him whom I believe to be you. I can sense it in you.\nAre you the one I willing to stop the forces inside the mountain?",
+				"ignore": false,
+				"phase": 0,
+				"yesno": true,
+				"method": "DiceOfLight"
+			},
+			{
+				"message": "Defeat the evil forces!\n Go New Light Warrior!",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			}
+		  ]
+		},
+		{
+			"name": "Farmer's Son Brandon", 
+			"messages": [
+			{
+				"message": "Mother is my best friend. I love to play with her.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Don't tell anyone but I believe the man next to us is a Wizard.",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Now let me play with mother.",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			}
+		  ]
+		},
+		{
+			"name": "Mother Hayley", 
+			"messages": [
+			{
+				"message": "Have you met my son Brayden already? He is training to become a warrior someday.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Oh, you have the legendary Dice of Light!!\nI believe you need to find a Wizard to awake their magic..",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			}
+		  ]
+		},
+		{
+			"name": "Inn's Sarah", 
+			"messages": [
+			{
+				"message": "Hello! I am Sarah and I help at the Inn.\nWater from this fountain is so good all our drinks are made with it.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "So you are going on an adventure?\nYou'll need to money to pass the money to pay the bridge keeper.\n Here take this!",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": "AddFiveCoins"
+			}
+		  ]
+		},
+		{
+			"name": "Wizard of Light Saramesh", 
+			"messages": [
+			{
+				"message": "Hello traveller.\nDid someone told you about the Firetop Mountain?",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Gipsies are well known for their knowledge about legends.\nI believe there is one living near the trees for now.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "That glow! It's the Dice of Light!!\nI believe now it's the hour for me to present myself.",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "I am the last of the Light Wizards! I am known as Saramesh.\nMy brothers died in the great war at the hands of that traitor!!",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "I can feel the power of the Dice glow through you!\nBelieve son.. You have a great quest ahead!\nI can tell you how the use their power. Do you wish that?",
+				"ignore": false,
+				"phase": 1,
+				"yesno": true,
+				"method": "CreateStats"
+			}
+		  ]
+		},
+		{
+			"name": "Dice Master Trent", 
+			"messages": [
+			{
+				"message": "Hello! Are you traveling alone?\nI am the Dice Master of the city.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "After the great war Wizards from all over the world created magical dices.\nThey were afraid for the darkness to return so they tried and tried but could not make another pair of Dice like the legendary ones.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Warrior like me dedicated their lifes to train with magical dice.\nThose who wish to become Dice Masters usualy look for me.\nIf you ever need to become a Dice Master talk to me.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "So you now have magical dice.\nI believe you need to find someone who can help you awaken their magic.\nLook for someone called Saramesh!",
+				"ignore": false,
+				"phase": 1,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Can it be??\nIs that the Dice of Light??",
+				"ignore": false,
+				"phase": 2,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "Now that their magic is up I can train you.\nDo you wish me to train you?",
+				"ignore": false,
+				"phase": 2,
+				"yesno": true,
+				"method": "TrainDice"
+			},
+			{
+				"message": "Now you are ready to stop darkness from return!\nGo my young padawan!",
+				"ignore": false,
+				"phase": 3,
+				"yesno": false,
+				"method": ""
+			},
+		  ]
+		},
+		{
+			"name": "Inn's Owner Porthos", 
+			"messages": [
+			{
+				"message": "Traveller, do you need a room? Maybe some ale?\nThis town was built after the great war and it is a passing point for those who want to challenge the misteries of the mountain.",
+				"ignore": false,
+				"phase": 0,
+				"yesno": false,
+				"method": ""
+			},
+			{
+				"message": "I see you are not just a traveller.\nIf you are going to defy the mountain's challenges I can give you some coins.\nAre you going there?",
+				"ignore": false,
+				"phase": 1,
+				"yesno": true,
+				"method": "AddTenCoins"
+			},
+			{
+				"message": "",
+				"ignore": false,
+				"phase": 2,
+				"yesno": false,
+				"method": ""
 			}
 		  ]
 		}

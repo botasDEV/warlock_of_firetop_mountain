@@ -1306,7 +1306,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100066, guid: 90b5d5f9034e6f94f8a65bef357cfe02, type: 3}
       propertyPath: m_Name
-      value: North Guard Jack
+      value: North Guard Jackson
       objectReference: {fileID: 0}
     - target: {fileID: 400064, guid: 90b5d5f9034e6f94f8a65bef357cfe02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1775,7 +1775,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1003328744321094, guid: 01c14961d9931d94f9ccb0cf0c46ba9f, type: 3}
       propertyPath: m_Name
-      value: clothingSet_04_And_nackedSet
+      value: Gipsy Kayla
       objectReference: {fileID: 0}
     - target: {fileID: 4203470457943290, guid: 01c14961d9931d94f9ccb0cf0c46ba9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3301,7 +3301,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1590341142010982, guid: 217897bf1ea1e084cb24ccf254a6dfcb, type: 3}
       propertyPath: m_Name
-      value: PT_Medieval_Boy_Peasant_01_e
+      value: Farmer's Son Brandon
       objectReference: {fileID: 0}
     - target: {fileID: 4055274515660872, guid: 217897bf1ea1e084cb24ccf254a6dfcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5721,7 +5721,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1277940811097104, guid: 23447ea53621e884e8fff38a0647be97, type: 3}
       propertyPath: m_Name
-      value: PT_Medieval_Priest_StPatrick
+      value: Wizard of Light Saramesh
       objectReference: {fileID: 0}
     - target: {fileID: 4569300711265150, guid: 23447ea53621e884e8fff38a0647be97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6994,7 +6994,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1625343741663112, guid: d57a606738b9f614e80cd96095127f1a, type: 3}
       propertyPath: m_Name
-      value: PT_Medieval_Female_Peasant_01_a
+      value: Mother Hayley
       objectReference: {fileID: 0}
     - target: {fileID: 4009622402400538, guid: d57a606738b9f614e80cd96095127f1a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16432,66 +16432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bb5f5ce5644da4c97d06cf0289f523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - I'm to become stronger than Siegfried.\nHe our city's champion.
-  - If you need to train find him.\nI will proceed with my trains so I can fight you
-    too!
 --- !u!4 &1150003214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4631977158232566, guid: 6dcae7204dd466c4c862bc640ea7c02e,
@@ -22492,7 +22432,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1625343741663112, guid: d57a606738b9f614e80cd96095127f1a, type: 3}
       propertyPath: m_Name
-      value: PT_Medieval_Female_Peasant_01_a (1)
+      value: Inn's Sarah
       objectReference: {fileID: 0}
     - target: {fileID: 4009622402400538, guid: d57a606738b9f614e80cd96095127f1a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26692,7 +26632,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1887817051179016, guid: 413439f16c75bb34ebaa52c7ee0dab50, type: 3}
       propertyPath: m_Name
-      value: PT_Medieval_Male_Peasant_01_c
+      value: Inn's Owner Porthos
       objectReference: {fileID: 0}
     - target: {fileID: 4883345673827444, guid: 413439f16c75bb34ebaa52c7ee0dab50, type: 3}
       propertyPath: m_LocalPosition.x
