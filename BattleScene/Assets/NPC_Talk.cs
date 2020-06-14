@@ -13,6 +13,7 @@ public class NPC_Talk : MonoBehaviour
     public TextAsset textAsset;
 
     public GameObject panel;
+    private GameObject camera;
     public Npc npc;
     public Text textUIName;
     public Text textUIMessage;
@@ -29,6 +30,8 @@ public class NPC_Talk : MonoBehaviour
 
     private void Awake()
     {
+        camera = GameObject.Find("Main Camera");
+        Debug.Log(camera);
         jsonParser = new JsonParser(textAsset, gameObject.name);
         npc = jsonParser.Setup();
         npcMessages = npc.messages;
@@ -136,8 +139,6 @@ public class NPC_Talk : MonoBehaviour
                     }
                 }
 
-                
-
                 // If the talk reaches this line there is nothing left to say so closes the talk
                 FinishTalk();
             }
@@ -149,6 +150,7 @@ public class NPC_Talk : MonoBehaviour
         talkStarted = false;
         isYesNo = false;
         panel.SetActive(false);
+        camera.GetComponent<PlayerManagement>().canPlay = true;
         WriteMessage(gameObject.name, "", CLICK_TO_CONTINUE);
 
         foreach (Message npcMessage in npcMessages)
