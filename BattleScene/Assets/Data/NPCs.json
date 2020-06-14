@@ -1,0 +1,65 @@
+{
+	"npcs" :
+	[
+		{
+			"name" : "Dice Master Trent",
+			"stats": {
+				"strength": 18,
+				"expertise": 12,
+				"luck": 9
+			},
+			"messages": [
+				{
+					"message": "First i'll teach you about your stats.\nOn the top left corner you have... ",
+					"ignore": false,
+					"phase": 0,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "...your Expertise, if it's value reaches 0 you lose!\n...your Strength, this will help you determine the damage you'll inflict on your oponent!\n...your Luck, this can make you inflict more or receive less damage! ",
+					"ignore": false,
+					"phase": 0,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "...and the Damaege you will inflict on your foe, this is set using the Strength and the value from the Dice.\nThe same exact stats are shown on the right top corner. However this belongs to your foe. ",
+					"ignore": false,
+					"phase": 0,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "Remember your choices during your path will make you fight stronger or weaker monsters. ",
+					"ignore": false,
+					"phase": 0,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "Now, in the left bottom corner you'll find the potions you can use.\nThe numbers below each one are the keys you need to press if you wan't to use them.\nLeft to right you'll have Expertise Potion, Strength Potion and Luck Potion. ",
+					"ignore": false,
+					"phase": 0,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "This potions will restore the stats they refer to, but be careful when you choose to use them! ",
+					"ignore": false,
+					"phase": 0,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "The empty floor area is where you and your foe will throw your Dice in order to set the Damage values.\nNow that you now the basics let's check your battle skills! ",
+					"ignore": false,
+					"phase": 0,
+					"yesno": false,
+					"method": ""
+				}
+
+			]
+		}
+	]
+}
