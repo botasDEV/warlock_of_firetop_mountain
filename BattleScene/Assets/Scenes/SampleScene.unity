@@ -227,7 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &34964451
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -542,7 +541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &241087460
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -647,7 +645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &288017932
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -752,7 +749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &372377591
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1036,7 +1032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &569985234
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1323,7 +1318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &665869096
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1574,7 +1568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &757183351
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1905,7 +1898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &870803528
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2010,7 +2002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!23 &923895137
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2485,6 +2476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impulse: {x: 5, y: 0, z: 0}
+  thrown: 0
   dice0Value: 0
   dice1Value: 0
 --- !u!1 &1095083666
@@ -2533,7 +2525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1095083669
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2792,7 +2783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1151127387
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2974,7 +2964,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1273477742
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3203,7 +3192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1411251059
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3550,7 +3538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1509117986
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3721,7 +3708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1523996180
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3826,7 +3812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1553256930
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3931,7 +3916,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1559777104
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4208,7 +4192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643824326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.130558, y: 24.97, z: 44.18899}
+  m_LocalPosition: {x: 23.130558, y: 24.843, z: 44.18899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7474963599484418462}
@@ -4229,6 +4213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impulse: {x: 0, y: 10, z: 20}
+  thrown: 0
   dice0Value: 0
   dice1Value: 0
 --- !u!1 &1676546187
@@ -4277,7 +4262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1676546190
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4532,7 +4516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1788290333
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4900,7 +4883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1906230259
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5005,7 +4987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1967696674
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5110,7 +5091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1970871591
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5215,7 +5195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1977989956
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5320,7 +5299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561697cc34510fc4295feacf7f54c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrown: 0
 --- !u!135 &1979865670
 SphereCollider:
   m_ObjectHideFlags: 0

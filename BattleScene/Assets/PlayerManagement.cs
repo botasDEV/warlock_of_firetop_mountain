@@ -8,6 +8,7 @@ public class PlayerManagement : MonoBehaviour
     public bool canPlay;
     GameObject playerDices;
     GameObject foeDices;
+    Vector3 playerDicesInitialPosition;
 
     public Text strengthText;
     public Text expertiseText;
@@ -33,6 +34,7 @@ public class PlayerManagement : MonoBehaviour
         currentStrength = strength;
         currentExpertise = expertise;
         currentLuck = luck;
+        playerDicesInitialPosition = playerDices.transform.position;
     }
 
     // Update is called once per frame
@@ -40,9 +42,11 @@ public class PlayerManagement : MonoBehaviour
     {
         if (canPlay && Input.GetMouseButtonDown(0))
         {
+            canPlay = false; 
             playerDices.GetComponent<DiceManager>().RollDice();
         }
 
+        // Sets the Damage after rolling dice
         if (playerDices.GetComponent<DiceManager>().dice0Value > 0 && playerDices.GetComponent<DiceManager>().dice1Value > 0)
         {
             damageText.text = (playerDices.GetComponent<DiceManager>().dice0Value + playerDices.GetComponent<DiceManager>().dice1Value + expertise).ToString();
