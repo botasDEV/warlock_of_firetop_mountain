@@ -6,6 +6,16 @@ TagManager:
   tags:
   - Foe
   - Ground
+  - Dice0
+  - Dice1
+  - Player_Dice0
+  - Player_Dice1
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
   layers:
   - Default
   - TransparentFX

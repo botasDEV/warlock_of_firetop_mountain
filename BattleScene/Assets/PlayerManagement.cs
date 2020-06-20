@@ -6,22 +6,23 @@ using UnityEngine.UI;
 public class PlayerManagement : MonoBehaviour
 {
     public bool canPlay;
-    GameObject playerDices;
-    GameObject foeDices;
-    Vector3 playerDicesInitialPosition;
+    public GameObject playerDices;
+    public GameObject dicesChecker;
 
     public Text strengthText;
     public Text expertiseText;
     public Text luckText;
     public Text damageText;
+    
 
     private int strength = 1;
     private int expertise = 1;
     private int luck = 1;
+    public static int damage = 0;
+
     private int currentStrength;
     private int currentExpertise;
     private int currentLuck;
-
 
 
     // Start is called before the first frame update
@@ -29,29 +30,32 @@ public class PlayerManagement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         canPlay = false;
-        playerDices = GameObject.Find("Dice_Player");
-        foeDices = GameObject.Find("Dice_Foe");
         currentStrength = strength;
         currentExpertise = expertise;
         currentLuck = luck;
-        playerDicesInitialPosition = playerDices.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (canPlay && Input.GetMouseButtonDown(0))
         {
-            canPlay = false; 
-            playerDices.GetComponent<DiceManager>().RollDice();
+            canPlay = false;
+            if (!damageText.GetComponent<TextScript>().enabled)
+            {
+                damageText.GetComponent<TextScript>().enabled = true;
+            }
+            playerDices.GetComponent<DiceScript>().RollDice();
         }
 
-        // Sets the Damage after rolling dice
-        if (playerDices.GetComponent<DiceManager>().dice0Value > 0 && playerDices.GetComponent<DiceManager>().dice1Value > 0)
+        if (!canPlay && Input.GetMouseButtonDown(0) && damageText.text != "0")
         {
-            damageText.text = (playerDices.GetComponent<DiceManager>().dice0Value + playerDices.GetComponent<DiceManager>().dice1Value + expertise).ToString();
-            playerDices.GetComponent<DiceManager>().dice0Value = 0;
-            playerDices.GetComponent<DiceManager>().dice1Value = 0;
+            dicesChecker.GetComponent<CheckDiceFace>().ResetCheck();
+            damageText.GetComponent<TextScript>().ResetText();
+            damageText.GetComponent<TextScript>().enabled = false;
+            canPlay = true;
+            playerDices.GetComponent<DiceScript>().ResetDice();
         }
 
         string strengthTxt = currentStrength + " / " + strength;
