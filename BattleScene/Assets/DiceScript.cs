@@ -10,6 +10,7 @@ public class DiceScript : MonoBehaviour
     public static List<Vector3> velocities = new List<Vector3>();
     public Vector3 impulse = new Vector3(0.0f, 20.0f, 20.0f);
 
+
     // Start is called before the first frame update
     void Start()
     {

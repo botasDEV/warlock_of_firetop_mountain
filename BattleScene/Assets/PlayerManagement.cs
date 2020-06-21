@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerManagement : MonoBehaviour
 {
-    public bool canPlay;
+    public GameObject gameStates;
     public GameObject playerDices;
     public GameObject dicesChecker;
 
@@ -29,7 +29,6 @@ public class PlayerManagement : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        canPlay = false;
         currentStrength = strength;
         currentExpertise = expertise;
         currentLuck = luck;
@@ -39,9 +38,8 @@ public class PlayerManagement : MonoBehaviour
     void Update()
     {
 
-        if (canPlay && Input.GetMouseButtonDown(0))
+        if (gameStates.GetComponent<StatesScript>().state == GameStates.PLAYERTURN && Input.GetMouseButtonDown(0))
         {
-            canPlay = false;
             if (!damageText.GetComponent<TextScript>().enabled)
             {
                 damageText.GetComponent<TextScript>().enabled = true;
@@ -49,12 +47,11 @@ public class PlayerManagement : MonoBehaviour
             playerDices.GetComponent<DiceScript>().RollDice();
         }
 
-        if (!canPlay && Input.GetMouseButtonDown(0) && damageText.text != "0")
+        if (gameStates.GetComponent<StatesScript>().state == GameStates.PLAYERTURN && Input.GetMouseButtonDown(0) && damageText.text != "0")
         {
             dicesChecker.GetComponent<CheckDiceFace>().ResetCheck();
             damageText.GetComponent<TextScript>().ResetText();
             damageText.GetComponent<TextScript>().enabled = false;
-            canPlay = true;
             playerDices.GetComponent<DiceScript>().ResetDice();
         }
 

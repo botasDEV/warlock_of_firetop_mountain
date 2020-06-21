@@ -57,6 +57,20 @@
 					"phase": 0,
 					"yesno": false,
 					"method": ""
+				},
+				{
+					"message": "You are a quick learner I see!\nBut now I will teach you! ",
+					"ignore": false,
+					"phase": 10,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "Better luck next time...\nNow I roll! ",
+					"ignore": false,
+					"phase": 11,
+					"yesno": false,
+					"method": ""
 				}
 
 			]

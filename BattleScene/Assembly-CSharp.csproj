@@ -72,6 +72,7 @@
     <Compile Include="Assets\NPC_Manage.cs" />
     <Compile Include="Assets\NPC_Talk.cs" />
     <Compile Include="Assets\PlayerManagement.cs" />
+    <Compile Include="Assets\StatesScript.cs" />
     <Compile Include="Assets\TextScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/rafael.botas/Documents/Licenciatura/AM/Projeto_Git/warlock_of_firetop_mountain/BattleScene/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

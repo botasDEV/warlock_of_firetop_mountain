@@ -8,12 +8,13 @@ public class NPC_Talk : MonoBehaviour
 {
     [SerializeField]
     private MessageWritter messageWritter;
+
+    public GameObject gameStates;
     
     private JsonParser jsonParser;
     public TextAsset textAsset;
 
     public GameObject panel;
-    private GameObject camera;
     public Npc npc;
     public Text textUIName;
     public Text textUIMessage;
@@ -21,17 +22,15 @@ public class NPC_Talk : MonoBehaviour
     private string method;
     private Message[] npcMessages;
     private List<Dictionary<string, string>> listDictMessages;
-    private bool talkStarted = false;
-    private int phase = 0;    
+    public bool talkStarted = false;
+    public int phase = 0;    
     private bool isYesNo = false;
-    private const string CLICK_TO_CONTINUE = "Press E to continue...";
-    private const string CLICK_TO_YESNO = "Left Mouse to confirm...\tRight Mouse to cancel";
+    public const string CLICK_TO_CONTINUE = "Press E to continue...";
+    public const string CLICK_TO_YESNO = "Left Mouse to confirm...\tRight Mouse to cancel";
 
 
     private void Awake()
     {
-        camera = GameObject.Find("Main Camera");
-        Debug.Log(camera);
         jsonParser = new JsonParser(textAsset, gameObject.name);
         npc = jsonParser.Setup();
         npcMessages = npc.messages;
@@ -40,17 +39,22 @@ public class NPC_Talk : MonoBehaviour
     private void Start()
     {
         // Start talk on the script start
-        talkStarted = true;
         panel.SetActive(true);
+        
         npcMessages[0].ignore = true;
         string npcMessage = npcMessages[0].message;
 
         string action = CLICK_TO_CONTINUE;
         string npcName = gameObject.name;
-        WriteMessage(npcName, npcMessage, action);
+        if (gameStates.GetComponent<StatesScript>().state == GameStates.START)
+        {
+            talkStarted = true;
+            WriteMessage(npcName, npcMessage, action);
+        }
+        
     }
 
-    private void WriteMessage(string npcName, string message, string action)
+    public void WriteMessage(string npcName, string message, string action)
     {
         textUIName.text = npcName;
         textUIAction.text = action;
@@ -150,7 +154,14 @@ public class NPC_Talk : MonoBehaviour
         talkStarted = false;
         isYesNo = false;
         panel.SetActive(false);
-        camera.GetComponent<PlayerManagement>().canPlay = true;
+        GameStates actualState = gameStates.GetComponent<StatesScript>().state;
+        gameStates.GetComponent<StatesScript>().state = (actualState == GameStates.START ?
+            GameStates.PLAYERTURN :
+            actualState == GameStates.PLAYERTURN ?
+            GameStates.PLAYERMAINPHASE :
+            actualState == GameStates.PLAYERMAINPHASE ?
+            GameStates.FOETURN : actualState);
+
         WriteMessage(gameObject.name, "", CLICK_TO_CONTINUE);
 
         foreach (Message npcMessage in npcMessages)
@@ -160,5 +171,27 @@ public class NPC_Talk : MonoBehaviour
                 npcMessage.ignore = false;
             }
         }
+    }
+
+    public void StartConversation(int newPhase)
+    {
+        Message message = null;
+        phase = newPhase;
+
+        foreach (Message msg in npcMessages)
+        {
+            if (msg.phase == phase)
+            {
+                message = msg;
+                msg.ignore = true;
+                Debug.Log(message.message);
+                break;
+            }
+        }
+        Debug.Log(npcMessages);
+        panel.SetActive(true);
+        
+        talkStarted = true;
+        WriteMessage(gameObject.name, message.message, NPC_Talk.CLICK_TO_CONTINUE);
     }
 }

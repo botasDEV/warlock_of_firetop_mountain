@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class CheckDiceFace : MonoBehaviour
 {
     List<Vector3> diceVelocities;
+    public GameObject gameStates;
+    public GameObject playerStats;
+    public GameObject foeStats;
     public Text playerDamage;
     public Text foeDamage;
     public bool isPlaying = false;
@@ -41,19 +44,28 @@ public class CheckDiceFace : MonoBehaviour
             {
                 int value = 7 - int.Parse(other.gameObject.tag);
                 GameObject dice = other.transform.parent.gameObject;
-                if (dice.tag.Equals("Player"))
+                GameStates actualState = gameStates.GetComponent<StatesScript>().state;
+                
+                if (actualState == GameStates.PLAYERTURN && dice.tag.Equals("Player"))
                 {
                     playerDamage.GetComponent<TextScript>().SumDices(value);
+
+                    diceCounted++;
+                    if (diceCounted == 2)
+                    {
+                        isPlaying = false;
+                        gameStates.GetComponent<StatesScript>().state = GameStates.PLAYERMAINPHASE;
+                    }
                 }
-                else
+                else if(actualState == GameStates.FOETURN && dice.tag.Equals("Foe"))
                 {
                     foeDamage.GetComponent<TextScript>().SumDices(value);
-                }
 
-                diceCounted++;
-                if (diceCounted == 2)
-                {
-                    isPlaying = false;
+                    diceCounted++;
+                    if (diceCounted == 2)
+                    {
+                        isPlaying = false;
+                    }
                 }
             }
 
