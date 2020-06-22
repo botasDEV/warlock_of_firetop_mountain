@@ -159,8 +159,7 @@ public class NPC_Talk : MonoBehaviour
             GameStates.PLAYERTURN :
             actualState == GameStates.PLAYERTURN ?
             GameStates.PLAYERMAINPHASE :
-            actualState == GameStates.PLAYERMAINPHASE ?
-            GameStates.FOETURN : actualState);
+            actualState);
 
         WriteMessage(gameObject.name, "", CLICK_TO_CONTINUE);
 
@@ -184,11 +183,9 @@ public class NPC_Talk : MonoBehaviour
             {
                 message = msg;
                 msg.ignore = true;
-                Debug.Log(message.message);
                 break;
             }
         }
-        Debug.Log(npcMessages);
         panel.SetActive(true);
         
         talkStarted = true;

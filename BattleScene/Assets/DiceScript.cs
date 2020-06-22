@@ -7,7 +7,7 @@ public class DiceScript : MonoBehaviour
     List<Vector3> initialPositions = new List<Vector3>();
     List<Quaternion> initialRotations = new List<Quaternion>();
     List<Rigidbody> rigidBodies = new List<Rigidbody>();
-    public static List<Vector3> velocities = new List<Vector3>();
+    public List<Vector3> velocities = new List<Vector3>();
     public Vector3 impulse = new Vector3(0.0f, 20.0f, 20.0f);
 
 

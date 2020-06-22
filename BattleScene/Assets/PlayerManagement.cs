@@ -13,16 +13,18 @@ public class PlayerManagement : MonoBehaviour
     public Text expertiseText;
     public Text luckText;
     public Text damageText;
-    
+
+    bool isPlaying = false;
 
     private int strength = 1;
     private int expertise = 1;
     private int luck = 1;
-    public static int damage = 0;
+    public int playerDamage = 0;
+    public Text foeDamage;
 
-    private int currentStrength;
-    private int currentExpertise;
-    private int currentLuck;
+    public int currentStrength;
+    public int currentExpertise;
+    public int currentLuck;
 
 
     // Start is called before the first frame update
@@ -37,22 +39,28 @@ public class PlayerManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameStates actualState = gameStates.GetComponent<StatesScript>().state;
 
-        if (gameStates.GetComponent<StatesScript>().state == GameStates.PLAYERTURN && Input.GetMouseButtonDown(0))
+        if (actualState == GameStates.PLAYERTURN && Input.GetMouseButtonDown(0) && !isPlaying)
         {
             if (!damageText.GetComponent<TextScript>().enabled)
             {
                 damageText.GetComponent<TextScript>().enabled = true;
             }
             playerDices.GetComponent<DiceScript>().RollDice();
+            isPlaying = true;
         }
 
-        if (gameStates.GetComponent<StatesScript>().state == GameStates.PLAYERTURN && Input.GetMouseButtonDown(0) && damageText.text != "0")
+        if (actualState == GameStates.PLAYERMAINPHASE && Input.GetKeyDown(KeyCode.E) && damageText.text != "0")
         {
             dicesChecker.GetComponent<CheckDiceFace>().ResetCheck();
-            damageText.GetComponent<TextScript>().ResetText();
-            damageText.GetComponent<TextScript>().enabled = false;
             playerDices.GetComponent<DiceScript>().ResetDice();
+            isPlaying = false;
+        }
+
+        if (actualState == GameStates.LUCK)
+        {
+            Debug.Log("LUCK STATE");
         }
 
         string strengthTxt = currentStrength + " / " + strength;

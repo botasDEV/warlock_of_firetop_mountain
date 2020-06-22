@@ -6,65 +6,100 @@ using UnityEngine.UI;
 public class CheckDiceFace : MonoBehaviour
 {
     List<Vector3> diceVelocities;
+    public GameObject playerDices;
+    public GameObject foeDices;
     public GameObject gameStates;
     public GameObject playerStats;
     public GameObject foeStats;
     public Text playerDamage;
     public Text foeDamage;
-    public bool isPlaying = false;
-    int diceExit = 0;
-    int diceCounted = 0;
+    public bool isPlayerPlaying = false;
+    public bool isFoePlaying = false;
+    int dicePlayerExit = 0;
+    int diceFoeExit = 0;
+    int foeDiceCounter = 0;
+    int playerDiceCounter = 0;
 
 
     // Start is called before the first frame update
     void FixedUpdate()
     {
-        diceVelocities = DiceScript.velocities;
+        if (gameStates.GetComponent<StatesScript>().state == GameStates.PLAYERTURN)
+        {
+            diceVelocities = playerDices.GetComponent<DiceScript>().velocities;
+        } else if (gameStates.GetComponent<StatesScript>().state == GameStates.FOETURN)
+        {
+            diceVelocities = foeDices.GetComponent<DiceScript>().velocities;
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        diceExit++;
-        if (diceExit >= 2) {
-            isPlaying = true;
-            diceCounted = 0;
+        GameStates actualState = gameStates.GetComponent<StatesScript>().state;
+        if (actualState == GameStates.PLAYERTURN)
+        {
+            dicePlayerExit++;
+            if (dicePlayerExit >= 2)
+            {
+                isPlayerPlaying = true;
+                playerDiceCounter = 0;
+            }
+        } else if (actualState == GameStates.FOETURN && !isFoePlaying)
+        {
+            diceFoeExit++;
+            if (diceFoeExit >= 2)
+            {
+                isFoePlaying = true;
+                foeDiceCounter = 0;
+            }
         }
+        
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (diceVelocities.Count == 2 && isPlaying)
+        GameStates actualState = gameStates.GetComponent<StatesScript>().state;
+
+        if (diceVelocities !=  null && diceVelocities.Count == 2 && (isPlayerPlaying || isFoePlaying))
         {
             float velocityValue = 0f;
             foreach (Vector3 diceVelocity in diceVelocities){
                 velocityValue += (diceVelocity.x + diceVelocity.y + diceVelocity.z);
             }
-
+            
             if (velocityValue == 0f)
             {
-                int value = 7 - int.Parse(other.gameObject.tag);
-                GameObject dice = other.transform.parent.gameObject;
-                GameStates actualState = gameStates.GetComponent<StatesScript>().state;
                 
-                if (actualState == GameStates.PLAYERTURN && dice.tag.Equals("Player"))
+                GameObject dice = other.transform.parent.gameObject;
+                int value = 7 - int.Parse(other.gameObject.tag);
+                
+                if (actualState == GameStates.PLAYERTURN && dice.tag.Equals("Player") && isPlayerPlaying)
                 {
+                    
                     playerDamage.GetComponent<TextScript>().SumDices(value);
+                    playerDiceCounter++;
 
-                    diceCounted++;
-                    if (diceCounted == 2)
+                    if (playerDiceCounter == 2)
                     {
-                        isPlaying = false;
+                        isPlayerPlaying = false;
+                        diceVelocities = null;
                         gameStates.GetComponent<StatesScript>().state = GameStates.PLAYERMAINPHASE;
                     }
                 }
-                else if(actualState == GameStates.FOETURN && dice.tag.Equals("Foe"))
+                
+                
+                if (actualState == GameStates.FOETURN && dice.tag.Equals("Foe") && isFoePlaying)
                 {
                     foeDamage.GetComponent<TextScript>().SumDices(value);
-
-                    diceCounted++;
-                    if (diceCounted == 2)
+                    foeDiceCounter++;
+                    if (foeDiceCounter == 2)
                     {
-                        isPlaying = false;
+                        isFoePlaying = false;
+                        diceVelocities = null;
+
+                        gameStates.GetComponent<StatesScript>().state = GameStates.MAINPHASE;
                     }
                 }
             }
@@ -74,7 +109,9 @@ public class CheckDiceFace : MonoBehaviour
 
     public void ResetCheck()
     {
-        isPlaying = false;
-        diceExit = 0;
+        isPlayerPlaying = false;
+        isFoePlaying = false;
+        dicePlayerExit = 0;
+        diceFoeExit = 0;
     }
 }
