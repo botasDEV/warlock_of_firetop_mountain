@@ -8,33 +8,31 @@ public class FoeAttack : MonoBehaviour
     public GameObject player;
     public GameObject gameStats;
     public float speed = 15f;
-    Vector3 initialPosition;
+    public Vector3 initialPosition;
     Vector3 playerPosition;
+    public bool attack = true; 
 
     // Start is called before the first frame update
     void Start()
     {
-        initialPosition = gameObject.transform.position;
-        playerPosition = playerTarget.transform.position;
-        
+        initialPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameStats.GetComponent<StatesScript>().state == GameStates.DEFEND && !gameObject.GetComponent<Renderer>().enabled)
+        playerPosition = playerTarget.transform.position;
+        if ((gameStats.GetComponent<StatesScript>().state == GameStates.DEFEND || gameStats.GetComponent<StatesScript>().state == GameStates.ATTACKDEFEND) && !gameObject.GetComponent<Renderer>().enabled && attack)
         {
-            Debug.Log("AQUI");
             gameObject.GetComponent<Renderer>().enabled = true;
         }
-        if (gameStats.GetComponent<StatesScript>().state == GameStates.DEFEND && gameObject.GetComponent<Renderer>().enabled)
+        if ((gameStats.GetComponent<StatesScript>().state == GameStates.DEFEND || gameStats.GetComponent<StatesScript>().state == GameStates.ATTACKDEFEND) && gameObject.GetComponent<Renderer>().enabled && attack)
         {
-            Debug.Log("AQUI 2");
             transform.position = Vector3.MoveTowards(transform.position, playerPosition, Time.deltaTime * speed);
         }
-        if (gameStats.GetComponent<StatesScript>().state == GameStates.DEFEND && transform.position == playerPosition)
+
+        if (gameStats.GetComponent<StatesScript>().state == GameStates.DEFEND && Vector3.Distance(transform.position, playerPosition) < 0.5)
         {
-            Debug.Log("AQUI 3");
             gameObject.GetComponent<Renderer>().enabled = false;
             transform.position = initialPosition;
             int currentStrength = player.GetComponent<PlayerManagement>().currentStrength - 2;
@@ -49,19 +47,10 @@ public class FoeAttack : MonoBehaviour
             }
             player.GetComponent<PlayerManagement>().currentStrength = currentStrength;
         }
+
     }
 
-    IEnumerator Defend()
-    {
-        while (gameStats.GetComponent<StatesScript>().state == GameStates.DEFEND)
-        {
-            
-
-            
-
-            yield return null;
-        }
-    }
+   
 
     
 }

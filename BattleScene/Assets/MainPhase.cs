@@ -17,13 +17,11 @@ public class MainPhase : MonoBehaviour
     {
         playerDamageText = GameObject.Find("Damage").GetComponent<Text>();
         foeDamageText = GameObject.Find("Damage_Foe").GetComponent<Text>();
+        playerDamage = int.Parse(playerDamageText.text);
+        foeDamage = int.Parse(foeDamageText.text);
         GameStates currentState = gameStates.GetComponent<StatesScript>().state;
-        if (currentState == GameStates.MAINPHASE)
+        if (currentState == GameStates.MAINPHASE && playerDamage != 0 && foeDamage != 0)
         {
-            playerDamage = int.Parse(playerDamageText.text);
-            foeDamage = int.Parse(foeDamageText.text);
-            Debug.Log("PLAYER: " + playerDamage);
-            Debug.Log("FOE: " + foeDamage);
             GameStates nextState;
 
             if (playerDamage > foeDamage)

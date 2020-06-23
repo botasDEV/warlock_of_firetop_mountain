@@ -35,18 +35,22 @@ public class NPC_Manage : MonoBehaviour
 
     private void Update()
     {
+        // Get the actual state
         GameStates actualState = gameStates.GetComponent<StatesScript>().state;
 
+        // When in the FOE's TURN roll it's dice
         if (actualState == GameStates.FOETURN)
         {
             RollDice();
         }
 
+        // Triggers a foes reaction for the player's roll
         if (actualState == GameStates.PLAYERMAINPHASE)
         {
             StartCoroutine(ReactToPlayer());
         }
 
+        // Updates the NPC Stats whenever they change
         string strengthTxt = currentStrength + " / " + npc.stats.strength;
         string expertiseTxt = currentExpertise + " / " + npc.stats.expertise;
         string luckTxt = currentLuck + " / " + npc.stats.luck;
@@ -55,6 +59,12 @@ public class NPC_Manage : MonoBehaviour
             WriteStats(strengthTxt, expertiseTxt, luckTxt);
         }
 
+        // Resets the Foe's dice to the initial position
+        if (actualState == GameStates.FOETURN && foeDamage.text != "0")
+        {
+            foeDices.GetComponent<DiceScript>().ResetDice();
+            gameStates.GetComponent<StatesScript>().state = GameStates.MAINPHASE;
+        }
     }
 
     IEnumerator ReactToPlayer()

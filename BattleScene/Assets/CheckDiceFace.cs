@@ -53,15 +53,13 @@ public class CheckDiceFace : MonoBehaviour
                 isFoePlaying = true;
                 foeDiceCounter = 0;
             }
-        }
-        
-        
+        }        
     }
 
     private void OnTriggerStay(Collider other)
     {
         GameStates actualState = gameStates.GetComponent<StatesScript>().state;
-
+        
         if (diceVelocities !=  null && diceVelocities.Count == 2 && (isPlayerPlaying || isFoePlaying))
         {
             float velocityValue = 0f;
@@ -98,10 +96,9 @@ public class CheckDiceFace : MonoBehaviour
                     {
                         isFoePlaying = false;
                         diceVelocities = null;
-
-                        gameStates.GetComponent<StatesScript>().state = GameStates.MAINPHASE;
                     }
                 }
+
             }
 
         }
@@ -111,6 +108,7 @@ public class CheckDiceFace : MonoBehaviour
     {
         isPlayerPlaying = false;
         isFoePlaying = false;
+        diceVelocities = null;
         dicePlayerExit = 0;
         diceFoeExit = 0;
     }

@@ -71,6 +71,13 @@
 					"phase": 11,
 					"yesno": false,
 					"method": ""
+				},
+				{
+					"message": "Draw? Really? You are getting stronger! ",
+					"ignore": false,
+					"phase": 12,
+					"yesno": false,
+					"method": ""
 				}
 
 			]

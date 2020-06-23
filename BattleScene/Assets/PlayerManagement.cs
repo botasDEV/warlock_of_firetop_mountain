@@ -58,7 +58,7 @@ public class PlayerManagement : MonoBehaviour
             isPlaying = false;
         }
 
-        if (actualState == GameStates.LUCK)
+        if (actualState == GameStates.LUCK && Input.GetMouseButtonDown(0))
         {
             Debug.Log("LUCK STATE");
         }
@@ -70,6 +70,8 @@ public class PlayerManagement : MonoBehaviour
         {
             WriteStats(strengthTxt, expertiseTxt, luckTxt);
         }
+
+        
     }
 
     private void WriteStats(string strengthTxt, string expertiseTxt, string luckTxt)

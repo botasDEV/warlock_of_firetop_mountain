@@ -67,7 +67,6 @@
     <Compile Include="Assets\Data\Npc.cs" />
     <Compile Include="Assets\Data\Npcs.cs" />
     <Compile Include="Assets\Data\Stats.cs" />
-    <Compile Include="Assets\Defended.cs" />
     <Compile Include="Assets\DiceScript.cs" />
     <Compile Include="Assets\FoeAttack.cs" />
     <Compile Include="Assets\KY_effects\Script\ConGUI.cs" />

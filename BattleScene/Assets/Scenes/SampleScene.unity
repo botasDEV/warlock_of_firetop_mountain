@@ -5111,7 +5111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foeTarget: {fileID: 891773031}
   foe: {fileID: 1067052595014435}
-  gameStats: {fileID: 1476321180}
+  foeDamage: {fileID: 2004598795}
+  gameStates: {fileID: 1476321180}
+  checkDice: {fileID: 1770118454}
   speed: 15
 --- !u!4 &286150663
 Transform:
@@ -5435,6 +5437,7 @@ MonoBehaviour:
   expertiseText: {fileID: 7030666789767193857}
   luckText: {fileID: 7030666789282578453}
   damageText: {fileID: 1740394331}
+  playerDamage: 0
   foeDamage: {fileID: 2004598797}
   currentStrength: 0
   currentExpertise: 0
@@ -6126,63 +6129,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783068790}
   m_CullTransparentMesh: 0
---- !u!1 &796151182
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 796151185}
-  - component: {fileID: 796151184}
-  - component: {fileID: 796151183}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &796151183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796151182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52f5e4558ada61e4a95930b2654eafd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &796151184
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796151182}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &796151185
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796151182}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7, y: 21.19, z: 46.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &803488254
 GameObject:
   m_ObjectHideFlags: 0
@@ -11067,6 +11013,8 @@ MonoBehaviour:
   player: {fileID: 534669902}
   gameStats: {fileID: 1476321180}
   speed: 15
+  initialPosition: {x: 0, y: 0, z: 0}
+  attack: 1
 --- !u!54 &891773036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11507,8 +11455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4423cc7a094b8f4bad3594a0ae0b7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 534669902}
-  foe: {fileID: 1067052595014435}
   gameStates: {fileID: 1476321180}
 --- !u!1 &1060314488
 GameObject:
