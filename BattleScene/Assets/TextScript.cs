@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class TextScript : MonoBehaviour
 {
+    public GameObject gameStates;
     Text damageText;
     private int dicesNumber = 0;
     int dicesCounted = 0;
+    bool reseted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +20,17 @@ public class TextScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dicesCounted == 2)
+        GameStates actualState = gameStates.GetComponent<StatesScript>().state;
+
+        if (dicesCounted == 2 && damageText.text == "0")
         {
-            damageText.text = dicesNumber.ToString();
-        }   
+            damageText.text = dicesNumber.ToString();            
+        } 
+        
+        if (actualState == GameStates.LUCK || actualState == GameStates.PLAYERTURN && !reseted)
+        {
+            ResetText();
+        }
     }
 
     public void SumDices(int faceValue)

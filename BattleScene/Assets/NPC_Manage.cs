@@ -64,6 +64,7 @@ public class NPC_Manage : MonoBehaviour
         {
             foeDices.GetComponent<DiceScript>().ResetDice();
             gameStates.GetComponent<StatesScript>().state = GameStates.MAINPHASE;
+            foeDiceRolled = false;
         }
     }
 
@@ -83,6 +84,7 @@ public class NPC_Manage : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             gameStates.GetComponent<StatesScript>().state = GameStates.FOETURN;
+            actualPhase = -1;
         }
         
     }

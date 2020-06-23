@@ -11,7 +11,7 @@ public class StatesScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = GameStates.ATTACKDEFEND;
+        state = GameStates.PLAYERTURN;
     }
 
     private void Update()

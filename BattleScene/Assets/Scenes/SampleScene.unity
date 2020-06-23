@@ -5433,6 +5433,7 @@ MonoBehaviour:
   gameStates: {fileID: 1476321180}
   playerDices: {fileID: 1643824326}
   dicesChecker: {fileID: 1770118454}
+  foe: {fileID: 1067052595014435}
   strengthText: {fileID: 7030666788663624001}
   expertiseText: {fileID: 7030666789767193857}
   luckText: {fileID: 7030666789282578453}
@@ -12938,6 +12939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbf90b556ee4574a974dfb91f78e059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStates: {fileID: 1476321180}
 --- !u!1 &1743893082
 GameObject:
   m_ObjectHideFlags: 0
@@ -13332,6 +13334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbf90b556ee4574a974dfb91f78e059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStates: {fileID: 1476321180}
 --- !u!1 &2048014155
 GameObject:
   m_ObjectHideFlags: 0
