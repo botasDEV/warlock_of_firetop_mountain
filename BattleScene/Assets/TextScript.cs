@@ -27,7 +27,7 @@ public class TextScript : MonoBehaviour
             damageText.text = dicesNumber.ToString();            
         } 
         
-        if (actualState == GameStates.LUCK || actualState == GameStates.PLAYERTURN && !reseted)
+        if (actualState == GameStates.PLAYERTURN && !reseted)
         {
             ResetText();
         }

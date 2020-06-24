@@ -11,12 +11,12 @@ public class StatesScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = GameStates.PLAYERTURN;
+        state = GameStates.LUCK;
     }
 
     private void Update()
     {
-        Debug.Log(state);
+        //Debug.Log(state);
     }
 
 }

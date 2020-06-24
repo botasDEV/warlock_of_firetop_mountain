@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NPC_Manage : MonoBehaviour
+public class NPC_Manage : MonoBehaviour, IActions
 {
     private Npc npc;
 
     public GameObject gameStates;
     public GameObject foeDices;
+    public GameObject player;
     public Text playerDamage;
     public Text foeDamage;
     public Text strengthText;
     public Text expertiseText;
     public Text luckText;
+    
     int actualPhase = -1;
     bool foeDiceRolled = false;
+    public bool explainedLuck = false;
+    bool hasFinishedLuckText = false; 
 
     public int currentStrength;
     int currentExpertise;
@@ -66,6 +70,11 @@ public class NPC_Manage : MonoBehaviour
             gameStates.GetComponent<StatesScript>().state = GameStates.MAINPHASE;
             foeDiceRolled = false;
         }
+
+        if (actualState == GameStates.LUCK && !hasFinishedLuckText)
+        {
+            StartCoroutine(IntroduceLuck());
+        }
     }
 
     IEnumerator ReactToPlayer()
@@ -89,6 +98,29 @@ public class NPC_Manage : MonoBehaviour
         
     }
 
+    IEnumerator IntroduceLuck()
+    {
+        bool talkEnded = false;
+        int phase = (explainedLuck ? 21 : 20);
+        bool talkStarted = gameObject.GetComponent<NPC_Talk>().talkStarted;
+        if (phase != actualPhase && !talkStarted)
+        {
+            gameObject.GetComponent<NPC_Talk>().StartConversation(phase, (explainedLuck ? NPC_Talk.CLICK_TO_YESNO : NPC_Talk.CLICK_TO_CONTINUE));
+            actualPhase = phase;
+        }
+        talkEnded = !gameObject.GetComponent<NPC_Talk>().talkStarted;
+
+        if (talkEnded && !talkStarted)
+        {
+            explainedLuck = true;
+            actualPhase = -1;
+            if (phase == 21)
+            {
+                hasFinishedLuckText = true;
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+    }
 
     void RollDice()
     {
@@ -110,5 +142,20 @@ public class NPC_Manage : MonoBehaviour
         luckText.text = luckTxt;
     }
 
-    
+    public void TryLuck(bool accepted)
+    {
+        Debug.Log("AQUI!!!!!!!!!!!!!!!!!");
+        if (accepted)
+        {
+            player.GetComponent<PlayerManagement>().rollLuck = true;
+        } else
+        {
+            gameStates.GetComponent<StatesScript>().state = GameStates.PLAYERTURN;  
+        }
+    }
+
+    public void exec(string method, object[] parameters)
+    {
+        GetType().GetMethod(method).Invoke(this, parameters);
+    }
 }

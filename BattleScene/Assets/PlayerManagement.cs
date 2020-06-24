@@ -14,6 +14,7 @@ public class PlayerManagement : MonoBehaviour
     public Text luckText;
     public Text damageText;
 
+    public bool rollLuck = false;
     bool isPlaying = false;
 
     private int strength = 1;
@@ -58,9 +59,9 @@ public class PlayerManagement : MonoBehaviour
             isPlaying = false;
         }
 
-        if (actualState == GameStates.LUCK && Input.GetMouseButtonDown(0))
+        if (actualState == GameStates.LUCK && rollLuck)
         {
-            Debug.Log("LUCK STATE");
+            playerDices.GetComponent<DiceScript>().RollDice();
         }
 
         string strengthTxt = currentStrength + " / " + strength;

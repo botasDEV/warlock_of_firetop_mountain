@@ -5433,11 +5433,11 @@ MonoBehaviour:
   gameStates: {fileID: 1476321180}
   playerDices: {fileID: 1643824326}
   dicesChecker: {fileID: 1770118454}
-  foe: {fileID: 1067052595014435}
   strengthText: {fileID: 7030666788663624001}
   expertiseText: {fileID: 7030666789767193857}
   luckText: {fileID: 7030666789282578453}
   damageText: {fileID: 1740394331}
+  rollLuck: 0
   playerDamage: 0
   foeDamage: {fileID: 2004598797}
   currentStrength: 0
@@ -13694,11 +13694,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStates: {fileID: 1476321180}
   foeDices: {fileID: 1206680224}
+  player: {fileID: 534669902}
   playerDamage: {fileID: 1740394331}
   foeDamage: {fileID: 2004598797}
   strengthText: {fileID: 1260839047}
   expertiseText: {fileID: 1096317193}
   luckText: {fileID: 1134183587}
+  explainedLuck: 0
   currentStrength: 0
 --- !u!1 &1103207571378961
 GameObject:

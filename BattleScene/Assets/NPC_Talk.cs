@@ -88,64 +88,42 @@ public class NPC_Talk : MonoBehaviour
             // If the talk reaches this line there is nothing left to say so closes the talk
             FinishTalk();
         }
-        
+
+
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && isYesNo && talkStarted && messageWritter.finishedWriting)
         {
             bool accepted = (Input.GetMouseButtonDown(0) ? true : false);
-            if (!accepted)
+            
+            // Call the method dynamically
+            string className = "NPC_Manage";
+            List<object> parameters = new List<object>();
+            parameters.Add((bool)accepted);
+            IActions actions = gameObject.GetComponent(className) as IActions;
+
+            actions.exec(method, parameters.ToArray());
+                
+            int phaseAux = (phase * 10 == 0 ? 11 : phase * 10);
+            foreach (Message npcMessage in npcMessages)
             {
-                foreach (Message npcMessage in npcMessages)
+                if (npcMessage.phase == phaseAux)
                 {
-                    int phaseAux = (phase * -10 == 0 ? -11 : phase * -10);
+                    string message = npcMessage.message;
+                    string npcName = gameObject.name;
+                    string action = (npcMessage.yesno ? CLICK_TO_YESNO : CLICK_TO_CONTINUE);
 
-                    if (npcMessage.phase == phaseAux)
+                    if (!npcMessage.ignore)
                     {
-                        string message = npcMessage.message;
-                        string npcName = gameObject.name;
-                        string action = (npcMessage.yesno ? CLICK_TO_YESNO : CLICK_TO_CONTINUE);
-
-                        if (!npcMessage.ignore)
-                        {
-                            WriteMessage(npcName, message, action);
-                            npcMessage.ignore = true;
-                            this.method = npcMessage.method;
-                            this.isYesNo = npcMessage.yesno;
-                            return;
-                        }
+                        WriteMessage(npcName, message, action);
+                        npcMessage.ignore = true;
+                        this.method = npcMessage.method;
+                        this.isYesNo = npcMessage.yesno;
+                        return;
                     }
                 }
-            } else
-            {
-                // Call the method dynamically
-                string className = gameObject.name.Replace(" ", "").Replace("'", "") + "Actions";
-                List<object> parameters = new List<object>();
-                parameters.Add((bool)accepted);
-                IActions actions = gameObject.GetComponent(className) as IActions;
-                actions.exec(method, parameters.ToArray());
-
-                int phaseAux = (phase * 10 == 0 ? 11 : phase * 10);
-                foreach (Message npcMessage in npcMessages)
-                {
-                    if (npcMessage.phase == phaseAux)
-                    {
-                        string message = npcMessage.message;
-                        string npcName = gameObject.name;
-                        string action = (npcMessage.yesno ? CLICK_TO_YESNO : CLICK_TO_CONTINUE);
-
-                        if (!npcMessage.ignore)
-                        {
-                            WriteMessage(npcName, message, action);
-                            npcMessage.ignore = true;
-                            this.method = npcMessage.method;
-                            this.isYesNo = npcMessage.yesno;
-                            return;
-                        }
-                    }
-                }
-
-                // If the talk reaches this line there is nothing left to say so closes the talk
-                FinishTalk();
             }
+
+            // If the talk reaches this line there is nothing left to say so closes the talk
+            FinishTalk();
         }
     }
 
@@ -155,6 +133,7 @@ public class NPC_Talk : MonoBehaviour
         isYesNo = false;
         panel.SetActive(false);
         GameStates actualState = gameStates.GetComponent<StatesScript>().state;
+        
         gameStates.GetComponent<StatesScript>().state = (actualState == GameStates.START ?
             GameStates.PLAYERTURN :
             actualState == GameStates.PLAYERTURN ?
@@ -172,7 +151,7 @@ public class NPC_Talk : MonoBehaviour
         }
     }
 
-    public void StartConversation(int newPhase)
+    public void StartConversation(int newPhase, string action = CLICK_TO_CONTINUE)
     {
         Message message = null;
         phase = newPhase;
@@ -189,6 +168,8 @@ public class NPC_Talk : MonoBehaviour
         panel.SetActive(true);
         
         talkStarted = true;
-        WriteMessage(gameObject.name, message.message, NPC_Talk.CLICK_TO_CONTINUE);
+        method = message.method;
+        isYesNo = message.yesno;
+        WriteMessage(gameObject.name, message.message, action);
     }
 }

@@ -73,12 +73,41 @@
 					"method": ""
 				},
 				{
-					"message": "Draw? Really? You are getting stronger! ",
+					"message": "Draw? Really?\nYou are getting stronger! ",
 					"ignore": false,
 					"phase": 12,
 					"yesno": false,
 					"method": ""
+				},
+				{
+					"message": "This is the Luck phase you need to roll the dice again.\nYou got lucky if the dice result is lower than your Luck Points. ",
+					"ignore": false,
+					"phase": 20,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "Everytime try your Luck you lose 1 point.\nKnow that if you have Luck after hitting your opponent it loses 2 extra Strength points otherwise the creature will recover 1 point. ",
+					"ignore": false,
+					"phase": 20,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "And if you have Luck after being hit by your opponent you recover 1 Strength Point or else you lose 1 more point. ",
+					"ignore": false,
+					"phase": 20,
+					"yesno": false,
+					"method": ""
+				},
+				{
+					"message": "Now that you know how it works...\nLet's try your luck? ",
+					"ignore": false,
+					"phase": 21,
+					"yesno": true,
+					"method": "TryLuck"
 				}
+
 
 			]
 		}
