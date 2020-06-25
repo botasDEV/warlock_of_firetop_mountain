@@ -5443,6 +5443,7 @@ MonoBehaviour:
   currentStrength: 0
   currentExpertise: 0
   currentLuck: 0
+  gotLuckPoints: 0
 --- !u!1 &540913236
 GameObject:
   m_ObjectHideFlags: 0
@@ -12918,7 +12919,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: '10
+
+'
 --- !u!222 &1740394332
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13046,8 +13049,8 @@ MonoBehaviour:
   playerDices: {fileID: 1643824326}
   foeDices: {fileID: 1206680224}
   gameStates: {fileID: 1476321180}
-  playerStats: {fileID: 0}
-  foeStats: {fileID: 0}
+  foe: {fileID: 1067052595014435}
+  player: {fileID: 534669902}
   playerDamage: {fileID: 1740394331}
   foeDamage: {fileID: 2004598797}
   isPlayerPlaying: 0
@@ -13313,7 +13316,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: '5
+
+'
 --- !u!222 &2004598798
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13699,8 +13704,10 @@ MonoBehaviour:
   foeDamage: {fileID: 2004598797}
   strengthText: {fileID: 1260839047}
   expertiseText: {fileID: 1096317193}
+  playerLuck: {fileID: 0}
   luckText: {fileID: 1134183587}
   explainedLuck: 0
+  checkLuck: 0
   currentStrength: 0
 --- !u!1 &1103207571378961
 GameObject:

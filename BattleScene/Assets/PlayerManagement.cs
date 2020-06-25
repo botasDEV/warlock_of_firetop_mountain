@@ -26,6 +26,7 @@ public class PlayerManagement : MonoBehaviour
     public int currentStrength;
     public int currentExpertise;
     public int currentLuck;
+    public int gotLuckPoints = 0;
 
 
     // Start is called before the first frame update
@@ -59,9 +60,9 @@ public class PlayerManagement : MonoBehaviour
             isPlaying = false;
         }
 
-        if (actualState == GameStates.LUCK && rollLuck)
+        if (actualState == GameStates.LUCK && rollLuck && Input.GetMouseButtonDown(0))
         {
-            playerDices.GetComponent<DiceScript>().RollDice();
+            StartLuck();
         }
 
         string strengthTxt = currentStrength + " / " + strength;
@@ -80,5 +81,10 @@ public class PlayerManagement : MonoBehaviour
         strengthText.text = strengthTxt;
         expertiseText.text = expertiseTxt;
         luckText.text = luckTxt;
+    }
+
+    void StartLuck()
+    {
+        playerDices.GetComponent<DiceScript>().RollDice();
     }
 }

@@ -14,12 +14,14 @@ public class NPC_Manage : MonoBehaviour, IActions
     public Text foeDamage;
     public Text strengthText;
     public Text expertiseText;
+    public Text playerLuck;
     public Text luckText;
     
     int actualPhase = -1;
     bool foeDiceRolled = false;
     public bool explainedLuck = false;
-    bool hasFinishedLuckText = false; 
+    bool hasFinishedLuckText = false;
+    public bool checkLuck = false;
 
     public int currentStrength;
     int currentExpertise;
@@ -75,6 +77,11 @@ public class NPC_Manage : MonoBehaviour, IActions
         {
             StartCoroutine(IntroduceLuck());
         }
+        
+        if (actualState == GameStates.LUCK && foeDamage.text != "0" && playerDamage.text != "0"  && checkLuck)
+        {
+            StartCoroutine(CheckLuck());
+        }
     }
 
     IEnumerator ReactToPlayer()
@@ -122,6 +129,33 @@ public class NPC_Manage : MonoBehaviour, IActions
         }
     }
 
+    IEnumerator CheckLuck()
+    {
+        checkLuck = false;
+        yield return new WaitForSeconds(0.5f);
+
+        int foeValue = int.Parse(foeDamage.text);
+        int playerValue = int.Parse(playerDamage.text);
+        int luck = int.Parse(playerLuck.text);
+        int gottenLuckPoints = player.GetComponent<PlayerManagement>().gotLuckPoints;
+
+        if (playerValue > foeValue && gottenLuckPoints <= luck)
+        {
+            // Take 2 points from FOE
+        } else if (playerValue > foeValue)
+        {
+            // Add 1 point to FOE
+        }
+
+        if (playerValue < foeValue && gottenLuckPoints <= luck)
+        {
+            // Add 1 point to Player
+        } else if (playerValue < foeValue)
+        {
+            // Take 1 more point from Player
+        }
+    }
+
     void RollDice()
     {
         if (!foeDamage.GetComponent<TextScript>().enabled)
@@ -144,14 +178,23 @@ public class NPC_Manage : MonoBehaviour, IActions
 
     public void TryLuck(bool accepted)
     {
-        Debug.Log("AQUI!!!!!!!!!!!!!!!!!");
+        StartCoroutine(DecidedLuck(accepted));
+    }
+
+    IEnumerator DecidedLuck(bool accepted)
+    {
         if (accepted)
         {
             player.GetComponent<PlayerManagement>().rollLuck = true;
-        } else
-        {
-            gameStates.GetComponent<StatesScript>().state = GameStates.PLAYERTURN;  
+            
         }
+        else
+        {
+            gameStates.GetComponent<StatesScript>().state = GameStates.PLAYERTURN;
+            yield return new WaitForSeconds(1);
+
+        }
+
     }
 
     public void exec(string method, object[] parameters)

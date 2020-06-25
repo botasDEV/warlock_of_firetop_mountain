@@ -106,6 +106,20 @@
 					"phase": 21,
 					"yesno": true,
 					"method": "TryLuck"
+				},
+				{
+					"message": "Damn, you are lucky! ",
+					"ignore": false,
+					"phase": 22,
+					"yesno": true,
+					"method": "TryLuck"
+				},
+				{
+					"message": "Better luck next time!\nDon't forget you to manage your Luck Points ",
+					"ignore": false,
+					"phase": 23,
+					"yesno": true,
+					"method": "TryLuck"
 				}
 
 

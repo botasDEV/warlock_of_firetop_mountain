@@ -9,8 +9,8 @@ public class CheckDiceFace : MonoBehaviour
     public GameObject playerDices;
     public GameObject foeDices;
     public GameObject gameStates;
-    public GameObject playerStats;
-    public GameObject foeStats;
+    public GameObject foe;
+    public GameObject player;
     public Text playerDamage;
     public Text foeDamage;
     public bool isPlayerPlaying = false;
@@ -24,10 +24,11 @@ public class CheckDiceFace : MonoBehaviour
     // Start is called before the first frame update
     void FixedUpdate()
     {
-        if (gameStates.GetComponent<StatesScript>().state == GameStates.PLAYERTURN)
+        GameStates actualState = gameStates.GetComponent<StatesScript>().state;
+        if (actualState == GameStates.PLAYERTURN || actualState == GameStates.LUCK)
         {
             diceVelocities = playerDices.GetComponent<DiceScript>().velocities;
-        } else if (gameStates.GetComponent<StatesScript>().state == GameStates.FOETURN)
+        } else if (actualState == GameStates.FOETURN)
         {
             diceVelocities = foeDices.GetComponent<DiceScript>().velocities;
         }
@@ -37,7 +38,7 @@ public class CheckDiceFace : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         GameStates actualState = gameStates.GetComponent<StatesScript>().state;
-        if (actualState == GameStates.PLAYERTURN)
+        if (actualState == GameStates.PLAYERTURN || actualState == GameStates.LUCK)
         {
             dicePlayerExit++;
             if (dicePlayerExit >= 2)
@@ -62,6 +63,7 @@ public class CheckDiceFace : MonoBehaviour
         
         if (diceVelocities !=  null && diceVelocities.Count == 2 && (isPlayerPlaying || isFoePlaying))
         {
+            
             float velocityValue = 0f;
             foreach (Vector3 diceVelocity in diceVelocities){
                 velocityValue += (diceVelocity.x + diceVelocity.y + diceVelocity.z);
@@ -86,8 +88,8 @@ public class CheckDiceFace : MonoBehaviour
                         gameStates.GetComponent<StatesScript>().state = GameStates.PLAYERMAINPHASE;
                     }
                 }
-                
-                
+
+
                 if (actualState == GameStates.FOETURN && dice.tag.Equals("Foe") && isFoePlaying)
                 {
                     foeDamage.GetComponent<TextScript>().SumDices(value);
@@ -96,6 +98,18 @@ public class CheckDiceFace : MonoBehaviour
                     {
                         isFoePlaying = false;
                         diceVelocities = null;
+                    }
+                }
+                
+                if (actualState == GameStates.LUCK && dice.tag.Equals("Player") && isPlayerPlaying)
+                {
+                    player.GetComponent<PlayerManagement>().gotLuckPoints += value;
+                    foeDiceCounter++;
+                    if (foeDiceCounter == 2)
+                    {
+                        isPlayerPlaying = false;
+                        diceVelocities = null;
+                        foe.GetComponent<NPC_Manage>().checkLuck = true;
                     }
                 }
 
