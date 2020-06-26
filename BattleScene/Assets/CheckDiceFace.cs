@@ -74,6 +74,7 @@ public class CheckDiceFace : MonoBehaviour
                 
                 GameObject dice = other.transform.parent.gameObject;
                 int value = 7 - int.Parse(other.gameObject.tag);
+
                 
                 if (actualState == GameStates.PLAYERTURN && dice.tag.Equals("Player") && isPlayerPlaying)
                 {
@@ -83,6 +84,7 @@ public class CheckDiceFace : MonoBehaviour
 
                     if (playerDiceCounter == 2)
                     {
+                        playerDamage.GetComponent<TextScript>().SumDices(player.GetComponent<PlayerManagement>().currentExpertise);
                         isPlayerPlaying = false;
                         diceVelocities = null;
                         gameStates.GetComponent<StatesScript>().state = GameStates.PLAYERMAINPHASE;
@@ -96,6 +98,7 @@ public class CheckDiceFace : MonoBehaviour
                     foeDiceCounter++;
                     if (foeDiceCounter == 2)
                     {
+                        foeDamage.GetComponent<TextScript>().SumDices(foe.GetComponent<NPC_Manage>().currentExpertise);
                         isFoePlaying = false;
                         diceVelocities = null;
                     }
@@ -104,8 +107,8 @@ public class CheckDiceFace : MonoBehaviour
                 if (actualState == GameStates.LUCK && dice.tag.Equals("Player") && isPlayerPlaying)
                 {
                     player.GetComponent<PlayerManagement>().gotLuckPoints += value;
-                    foeDiceCounter++;
-                    if (foeDiceCounter == 2)
+                    playerDiceCounter++;
+                    if (playerDiceCounter == 2)
                     {
                         isPlayerPlaying = false;
                         diceVelocities = null;

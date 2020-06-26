@@ -5,8 +5,7 @@
 			"name" : "Dice Master Trent",
 			"stats": {
 				"strength": 18,
-				"expertise": 12,
-				"luck": 9
+				"expertise": 12
 			},
 			"messages": [
 				{

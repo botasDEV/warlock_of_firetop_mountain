@@ -15,7 +15,6 @@ public class NPC_Manage : MonoBehaviour, IActions
     public Text strengthText;
     public Text expertiseText;
     public Text playerLuck;
-    public Text luckText;
     
     int actualPhase = -1;
     bool foeDiceRolled = false;
@@ -24,8 +23,7 @@ public class NPC_Manage : MonoBehaviour, IActions
     public bool checkLuck = false;
 
     public int currentStrength;
-    int currentExpertise;
-    int currentLuck;
+    public int currentExpertise;
 
 
 
@@ -36,7 +34,6 @@ public class NPC_Manage : MonoBehaviour, IActions
 
         currentStrength = npc.stats.strength;
         currentExpertise = npc.stats.expertise;
-        currentLuck = npc.stats.luck;
     }
 
     private void Update()
@@ -59,10 +56,9 @@ public class NPC_Manage : MonoBehaviour, IActions
         // Updates the NPC Stats whenever they change
         string strengthTxt = currentStrength + " / " + npc.stats.strength;
         string expertiseTxt = currentExpertise + " / " + npc.stats.expertise;
-        string luckTxt = currentLuck + " / " + npc.stats.luck;
-        if (!strengthText.text.Equals(strengthTxt) || !expertiseText.text.Equals(expertiseTxt) || !luckText.text.Equals(luckTxt))
+        if (!strengthText.text.Equals(strengthTxt) || !expertiseText.text.Equals(expertiseTxt))
         {
-            WriteStats(strengthTxt, expertiseTxt, luckTxt);
+            WriteStats(strengthTxt, expertiseTxt);
         }
 
         // Resets the Foe's dice to the initial position
@@ -134,26 +130,63 @@ public class NPC_Manage : MonoBehaviour, IActions
         checkLuck = false;
         yield return new WaitForSeconds(0.5f);
 
+        GameStates nextState = GameStates.PLAYERTURN;
         int foeValue = int.Parse(foeDamage.text);
         int playerValue = int.Parse(playerDamage.text);
-        int luck = int.Parse(playerLuck.text);
+        int luck = int.Parse(playerLuck.text.Split('/')[0]);
+
+        int maxFoeStregth = int.Parse(strengthText.text.Split('/')[1]);
+        int maxPlayerStregth = int.Parse(player.GetComponent<PlayerManagement>().strengthText.text.Split('/')[1]);
         int gottenLuckPoints = player.GetComponent<PlayerManagement>().gotLuckPoints;
 
         if (playerValue > foeValue && gottenLuckPoints <= luck)
         {
-            // Take 2 points from FOE
+            currentStrength -= 2;
+
+            if (currentStrength <= 0)
+            {
+                currentStrength = 0;
+                nextState = GameStates.WON;
+            }
         } else if (playerValue > foeValue)
         {
-            // Add 1 point to FOE
+            currentStrength += 1;
+            if (currentStrength >= maxFoeStregth)
+            {
+                currentStrength = maxFoeStregth;
+            }
         }
 
         if (playerValue < foeValue && gottenLuckPoints <= luck)
         {
-            // Add 1 point to Player
+            int strength = player.GetComponent<PlayerManagement>().currentStrength;
+            strength += 1;
+
+            if (strength >= maxPlayerStregth)
+            {
+                strength = maxPlayerStregth;
+            }
+
+            player.GetComponent<PlayerManagement>().currentStrength = strength;
         } else if (playerValue < foeValue)
         {
-            // Take 1 more point from Player
+            player.GetComponent<PlayerManagement>().currentStrength -= 1;
+
+            if (player.GetComponent<PlayerManagement>().currentStrength <= 0)
+            {
+                player.GetComponent<PlayerManagement>().currentStrength = 0;
+                nextState = GameStates.LOST;
+            }
         }
+
+        player.GetComponent<PlayerManagement>().canReset = true;
+        player.GetComponent<PlayerManagement>().gotLuckPoints = 0;
+        yield return new WaitForSeconds(0.5f);
+        gameStates.GetComponent<StatesScript>().state = nextState;
+        yield return new WaitForSeconds(0.5f);
+        player.GetComponent<PlayerManagement>().currentLuck = luck - 1;
+        hasFinishedLuckText = false;
+
     }
 
     void RollDice()
@@ -169,11 +202,10 @@ public class NPC_Manage : MonoBehaviour, IActions
         foeDiceRolled = true;
     }
 
-    private void WriteStats(string strengthTxt, string expertiseTxt, string luckTxt)
+    private void WriteStats(string strengthTxt, string expertiseTxt)
     {
         strengthText.text = strengthTxt;
         expertiseText.text = expertiseTxt;
-        luckText.text = luckTxt;
     }
 
     public void TryLuck(bool accepted)
@@ -190,9 +222,11 @@ public class NPC_Manage : MonoBehaviour, IActions
         }
         else
         {
+            player.GetComponent<PlayerManagement>().canReset = true;
+            yield return new WaitForSeconds(0.5f);
             gameStates.GetComponent<StatesScript>().state = GameStates.PLAYERTURN;
-            yield return new WaitForSeconds(1);
-
+            yield return new WaitForSeconds(0.5f);
+            hasFinishedLuckText = false;
         }
 
     }

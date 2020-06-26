@@ -14,12 +14,18 @@ public class PlayerManagement : MonoBehaviour
     public Text luckText;
     public Text damageText;
 
-    public bool rollLuck = false;
-    bool isPlaying = false;
+    public Text expertisePotionQtd;
+    public Text luckPotionQtd;
+    public Text strengthPotionQtd;
 
-    private int strength = 1;
-    private int expertise = 1;
-    private int luck = 1;
+    public bool rollLuck = false;
+    public bool canReset = false;
+    bool isPlaying = false;
+    
+
+    private int strength = 10;
+    private int expertise = 10;
+    private int luck = 10;
     public int playerDamage = 0;
     public Text foeDamage;
 
@@ -53,11 +59,57 @@ public class PlayerManagement : MonoBehaviour
             isPlaying = true;
         }
 
-        if (actualState == GameStates.PLAYERMAINPHASE && Input.GetKeyDown(KeyCode.E) && damageText.text != "0")
+        if (actualState == GameStates.PLAYERTURN && (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) && !expertisePotionQtd.text.Equals("0"))
+        {
+            int maxExpertisePoints = int.Parse(expertiseText.text.Split('/')[1]);
+            if (currentExpertise < maxExpertisePoints)
+            {
+                currentExpertise = maxExpertisePoints;
+                int qtd = int.Parse(expertisePotionQtd.text) - 1;
+                if (qtd <= 0)
+                {
+                    qtd = 0;
+                }
+                expertisePotionQtd.text = qtd.ToString();
+            }
+        }
+
+        if (actualState == GameStates.PLAYERTURN && (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) && !strengthPotionQtd.text.Equals("0"))
+        {
+            int maxStrengthPoints = int.Parse(strengthText.text.Split('/')[1]);
+            if (currentStrength < maxStrengthPoints)
+            {
+                currentStrength = maxStrengthPoints;
+                int qtd = int.Parse(strengthPotionQtd.text) - 1;
+                if (qtd <= 0)
+                {
+                    qtd = 0;
+                }
+                strengthPotionQtd.text = qtd.ToString();
+            }
+        }
+
+        if (actualState == GameStates.PLAYERTURN && (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) && !luckPotionQtd.text.Equals("0"))
+        {
+            int maxLuckPoints = int.Parse(luckText.text.Split('/')[1]);
+            if (currentLuck < maxLuckPoints)
+            {
+                currentLuck = maxLuckPoints;
+                int qtd = int.Parse(luckPotionQtd.text) - 1;
+                if (qtd <= 0)
+                {
+                    qtd = 0;
+                }
+                luckPotionQtd.text = qtd.ToString();
+            }
+        }
+
+        if (actualState == GameStates.PLAYERMAINPHASE && Input.GetKeyDown(KeyCode.E) && damageText.text != "0" || canReset)
         {
             dicesChecker.GetComponent<CheckDiceFace>().ResetCheck();
             playerDices.GetComponent<DiceScript>().ResetDice();
             isPlaying = false;
+            canReset = false;
         }
 
         if (actualState == GameStates.LUCK && rollLuck && Input.GetMouseButtonDown(0))
